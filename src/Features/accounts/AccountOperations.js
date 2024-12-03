@@ -9,11 +9,13 @@ function AccountOperations() {
   const [loanPurpose, setLoanPurpose] = useState("");
   const [currency, setCurrency] = useState("USD");
   const dispatch = useDispatch();
+
   const {
     loan: currentLoan,
     loanPurpose: currentLoanPurpose,
     balance,
   } = useSelector((store) => store.account);
+
   console.log(balance);
   console.log(loanAmount);
   console.log(loanPurpose);
@@ -32,7 +34,7 @@ function AccountOperations() {
 
   function handleRequestLoan() {
     if (!loanAmount || !loanPurpose) return;
-    dispatch(requestLoan(loanAmount, loanPurpose));
+    dispatch(requestLoan(Number(loanAmount), loanPurpose)); // Ensure amount is a number
     setLoanAmount("");
     setLoanPurpose("");
   }
